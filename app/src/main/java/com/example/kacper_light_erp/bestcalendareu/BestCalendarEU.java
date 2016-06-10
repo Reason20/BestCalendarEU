@@ -80,7 +80,7 @@ public class BestCalendarEU extends AppCompatActivity {
         try {
             Connection con = conn.CONN();
             if (con == null) {
-                throw new SQLException();
+                //throw new SQLException();
             } else {
                 listaEventow.clear();
                 String query = "select * from Events where Data='"+SelectedDate+"'";

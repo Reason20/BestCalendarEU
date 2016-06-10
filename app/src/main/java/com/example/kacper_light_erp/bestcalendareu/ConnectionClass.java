@@ -7,6 +7,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+
+
 /**
  * Created by Kacper-Light-ERP on 2016-06-10.
  */
@@ -25,10 +27,8 @@ public class ConnectionClass {
             String ConnURL = null;
             try {
 
-                Class.forName(classs);
-                ConnURL = "jdbc:sqlserver://" + ip + ";"
-                        + "DatabaseName=" + db + ";user=" + un + ";password="
-                        + password + ";";
+                Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver").newInstance();
+                ConnURL = "jdbc:sqlserver://bestcalendateu.database.windows.net:1433;database=BestCallendarEU;user=administrator_kalendarza@bestcalendateu;password=get_rekt!!!420;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;ssl=require;";
                 conn = DriverManager.getConnection(ConnURL);
             } catch (SQLException se) {
                 Log.e("ERRO", se.getMessage());
