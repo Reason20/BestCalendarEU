@@ -7,14 +7,25 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.CalendarView;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
 public class BestCalendarEU extends AppCompatActivity {
     Handler handler;
+    String SelectedDate;
+    ArrayList<Event> listaEventow = new ArrayList<>();
 
 
     @Override
@@ -22,6 +33,10 @@ public class BestCalendarEU extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_best_calendar_eu);
         handler = new Handler();
+        Date foo = new Date();
+        SelectedDate = foo.toString();
+        Log.wtf("", SelectedDate);
+        findEvents();
         Button dodaj = (Button) findViewById(R.id.newevent);
 
         dodaj.setOnClickListener(new View.OnClickListener() {
@@ -50,15 +65,45 @@ public class BestCalendarEU extends AppCompatActivity {
             }
         });
         CalendarView cv= (CalendarView) findViewById(R.id.calendarView);
-        cv.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
-            @Override
-            public void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth) {
-                
+        if (cv != null) {
+            cv.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+                @Override
+                public void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth) {
+                    SelectedDate=Integer.toString(year)+"-"+Integer.toString(month)+"-"+Integer.toString(dayOfMonth);
+                    findEvents();
+                }
+            });
+        }
+    }
+    public void findEvents(){
+        ConnectionClass conn = new ConnectionClass();
+        try {
+            Connection con = conn.CONN();
+            if (con == null) {
+                throw new SQLException();
+            } else {
+                listaEventow.clear();
+                String query = "select * from Events where Data='"+SelectedDate+"'";
+                Statement stmt = con.createStatement();
+                ResultSet rs = stmt.executeQuery(query);
+                Event event = new Event();
+                while (rs.next())
+                {
+                    event = new Event();
+                    event.setTytul(rs.getObject(2).toString());
+                    event.setData(rs.getObject(3).toString());
+                    event.setGodzina(rs.getObject(4).toString());
+                    event.setOpis(rs.getObject(5).toString());
+                    listaEventow.add(event);
+                }
             }
-        });
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
-    @Override
+        @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_best_calendar_eu, menu);
