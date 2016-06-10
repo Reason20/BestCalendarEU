@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">BestCalendarEU</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_calendar_task_list">CalendarTaskList</string>
+</resources>
