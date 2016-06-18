@@ -3,6 +3,7 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
     <color name="colorTitle">#122134</color>
 
     <color name="green_temp">#23A96E</color>
@@ -18,5 +19,9 @@
     <item name="grey" type="color">#555555</item>
     <item name="green" type="color">#4499CC00</item>
     <item name="darkgreen" type="color">#FF669900</item>
+
+
+    <color name="primary_text">#212121</color>
+    <color name="secondary_text">#727272</color>
 
 </resources>
