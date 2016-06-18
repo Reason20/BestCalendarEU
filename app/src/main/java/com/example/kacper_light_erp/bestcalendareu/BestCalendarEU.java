@@ -64,6 +64,37 @@ public class BestCalendarEU extends AppCompatActivity {
                 }, 250);
             }
         });
+
+        Button about = (Button) findViewById(R.id.about);
+        about.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        Intent intent = new Intent(getApplicationContext(), AboutAuthors.class);
+                        startActivity(intent);
+                    }
+                }, 250);
+            }
+        });
+
+        Button calendar = (Button) findViewById(R.id.calendar);
+        calendar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        Intent intent = new Intent(getApplicationContext(), DisplayCalendar.class);
+                        startActivity(intent);
+                    }
+                }, 250);
+            }
+        });
+
+
+
         CalendarView cv= (CalendarView) findViewById(R.id.calendarView);
         if (cv != null) {
             cv.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {

@@ -17,4 +17,12 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <style name="TextTitle" parent="@android:style/TextAppearance.WindowTitle">
+        <item name="android:textColor">@color/colorTitle</item>
+    </style>
+
+    <style name="DeepBlue">
+        <item name="android:textColor">@color/clear_blue</item>
+    </style>
+
 </resources>

@@ -28,6 +28,22 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true" />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="O autorach:"
+        android:id="@+id/about"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="test"
+        android:id="@+id/calendar"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"/>
+
     <CalendarView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

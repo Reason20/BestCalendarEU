@@ -3,4 +3,10 @@
     <string name="action_settings">Settings</string>
     <string name="title_activity_calendar_task_list">CalendarTaskList</string>
     <string name="title_activity_add_event">Add Event Activity</string>
+    <string name="title_activity_about_authors">About Authors</string>
+    <string name="authors_label">Autorzy:</string>
+    <string name="authors_text">Studenci uniwersytetu im. Adama Mickiewicza w Poznaniu. Tutaj jeszcze trochę długiego tekstu. Stworzyli aplikację Best Callendar EU ponieważ chcą wiedzieć jakie zadania mają do zrobienia w konkretny dzień.\nJeszcze więcej tekstu, tekst, tekst lorem ipsum dolor sit amet dalej nie pamiętam. Kliknij w przycisk aby wysłać wiadomość.</string>
+    <string name="send_button_title">  Wyślij autorom wiadomość  </string>
+    <string name="authors_names">►Tymon Oziemblewski\n►Kacper Górski</string>
+    <string name="add_event_button">Dodaj event</string>
 </resources>
