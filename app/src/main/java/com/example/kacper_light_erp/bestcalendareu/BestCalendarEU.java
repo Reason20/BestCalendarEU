@@ -18,14 +18,16 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
 public class BestCalendarEU extends AppCompatActivity {
     Handler handler;
-    String SelectedDate;
-    ArrayList<Event> listaEventow = new ArrayList<>();
+    Data SelectedDate;
 
 
     @Override
@@ -33,10 +35,8 @@ public class BestCalendarEU extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_best_calendar_eu);
         handler = new Handler();
-        Date foo = new Date();
-        SelectedDate = foo.toString();
-        Log.wtf("", SelectedDate);
-        findEvents();
+        Date date = Calendar.getInstance().getTime();
+        SelectedDate.setDat(date.toString());
         Button dodaj = (Button) findViewById(R.id.newevent);
 
         dodaj.setOnClickListener(new View.OnClickListener() {
@@ -59,6 +59,7 @@ public class BestCalendarEU extends AppCompatActivity {
                     @Override
                     public void run() {
                         Intent intent = new Intent(getApplicationContext(), CalendarTaskList.class);
+                        intent.putExtra(CalendarTaskList.SELECTED_DATE, SelectedDate);
                         startActivity(intent);
                     }
                 }, 250);
@@ -69,59 +70,11 @@ public class BestCalendarEU extends AppCompatActivity {
             cv.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
                 @Override
                 public void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth) {
-                    SelectedDate=Integer.toString(year)+"-"+Integer.toString(month)+"-"+Integer.toString(dayOfMonth);
-                    findEvents();
+                    SelectedDate.setDat(Integer.toString(year)+"-"+Integer.toString(month)+"-"+Integer.toString(dayOfMonth));
+
                 }
             });
         }
     }
-    public void findEvents(){
-        ConnectionClass conn = new ConnectionClass();
-        try {
-            Connection con = conn.CONN();
-            if (con == null) {
-                //throw new SQLException();
-            } else {
-                listaEventow.clear();
-                String query = "select * from Events where Data='"+SelectedDate+"'";
-                Statement stmt = con.createStatement();
-                ResultSet rs = stmt.executeQuery(query);
-                Event event = new Event();
-                while (rs.next())
-                {
-                    event = new Event();
-                    event.setTytul(rs.getObject(2).toString());
-                    event.setData(rs.getObject(3).toString());
-                    event.setGodzina(rs.getObject(4).toString());
-                    event.setOpis(rs.getObject(5).toString());
-                    listaEventow.add(event);
-                }
-            }
-        }
-        catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
 
-        @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_best_calendar_eu, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
 }
