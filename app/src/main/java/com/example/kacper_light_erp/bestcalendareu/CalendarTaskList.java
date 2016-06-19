@@ -1,18 +1,121 @@
 package com.example.kacper_light_erp.bestcalendareu;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+import android.os.Handler;
+import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ListView;
+import android.widget.Toast;
 
-public class CalendarTaskList extends AppCompatActivity {
+import org.json.JSONException;
+
+import java.io.IOException;
+
+
+public class CalendarTaskList extends ActionBarActivity {
+
+    public static final String SELECTED_DATE = "date";
+
+    private static final String TAG = CalendarTaskList.class.getSimpleName();
+
+
+    private ListView lv;
+    private Handler handler;
+
+    private EventsAdapter adapter;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calendar_task_list);
+
+        handler = new Handler();
+
+        initializeList();
+
+        new Thread(new Runnable() {
+
+            @Override
+            public void run() {
+                getEventsFromNetwork();
+            }
+        }).start();
+    }
+
+    private void getEventsFromNetwork() {
+        try {
+            fetchEvents();
+        } catch (IOException e) {
+            Log.e(TAG, "IOException while fetching recipes", e);
+            showToast("IOException while fetching recipes");
+        } catch (JSONException e) {
+            Log.e(TAG, "JSONException while fetching recipes", e);
+            showToast("JSONException while fetching recipes");
+        }
+    }
+
+    private void fetchEvents() throws IOException, JSONException {
+        final NetworkEventsProvider networkRecipesProvider = new NetworkEventsProvider(this);
+
+        networkRecipesProvider.getEvents(new NetworkEventsProvider.OnEventsDownloadedListener() {
+
+            @Override
+            public void onEventsDownloaded() {
+                handler.post(new Runnable() {
+
+                    @Override
+                    public void run() {
+                        Log.d(TAG, SELECTED_DATE);
+                        Log.d(TAG, "Fetched " + networkRecipesProvider.getEventsNumber() + " events");
+                        adapter.setEvents(networkRecipesProvider.getAllEvents());
+                        adapter.notifyDataSetChanged();
+                    }
+                });
+            }
+        }, SELECTED_DATE);
+    }
+
+    private void showToast(final String tost) {
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                Toast.makeText(CalendarTaskList.this, tost, Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        adapter.notifyDataSetChanged();
+    }
+
+    private void initializeList() {
+        lv = (ListView) findViewById(R.id.listView);
+        adapter = new EventsAdapter(this);
+
+        lv.setAdapter(adapter);
+
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Event event = adapter.getItem(position);
+                showEvent(event);
+            }
+        });
+    }
+
+    private void showEvent(Event event) {
+        Intent i = new Intent(this, EventsDetailsActivity.class);
+
+        i.putExtra(EventsDetailsActivity.EVENT_KEY, event);
+
+        startActivity(i);
     }
 
 }
