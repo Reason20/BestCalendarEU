@@ -10,11 +10,10 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:background="@color/deep_blue"
     tools:context=".AboutAuthors">
-        <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/deep_blue"
-        >
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:orientation="vertical"
@@ -26,25 +25,19 @@
 
 
             <TextView
-                style="@style/DeepBlue"
                 android:text="@string/authors_label"
                 android:textSize="35sp"
                 android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                style="@style/DeepBlue"
+                />
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:background="@color/blue"/>
 
-            <ImageView
-                android:layout_gravity="center_horizontal"
-                android:paddingTop="10px"
-                android:paddingBottom="5px"
-                android:layout_height="wrap_content"
-                android:layout_width="fill_parent"
-                android:src="@android:drawable/divider_horizontal_bright" />
 
             <TextView
                 style="@style/DeepBlue"
@@ -61,9 +54,6 @@
                 android:layout_height="wrap_content"
                 android:text="@string/authors_text"
                 android:layout_marginTop="10dp"/>
-
-
-
 
             <Button
                 android:id="@+id/sendMessage"
