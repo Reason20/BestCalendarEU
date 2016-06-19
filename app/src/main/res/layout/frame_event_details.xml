@@ -20,28 +20,22 @@
                 android:id="@+id/Tytul"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="18dp"
-                android:textColor="#222"/>
+                android:textSize="25dp"
+                />
 
-            <TextView
-                style="@style/PrimaryText"
-                android:layout_marginTop="10dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+
 
             <TextView
                 style="@style/SecondaryText"
                 android:id="@+id/Godzina"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"/>
+                android:layout_marginTop="20dp"
+                android:textSize="50sp"
+                android:layout_gravity="center_horizontal"
+                />
 
-            <TextView
-                style="@style/PrimaryText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="#222"
-                android:layout_marginTop="10dp"/>
+
 
             <TextView
                 style="@style/SecondaryText"
@@ -49,7 +43,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:layout_marginBottom="60dp"/>
+                android:layout_marginBottom="60dp"
+                android:textSize="17sp"/>
 
         </LinearLayout>
 

@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_width="match_parent"
+android:layout_height="match_parent" >
+
+<LinearLayout
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="16dp">
+
     <EditText
         android:id="@+id/title"
         android:layout_width="fill_parent"
@@ -8,49 +16,63 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:ems="10"
-        android:hint="Tytuł- wymagany" />
+        android:hint="Tytuł - wymagany" />
 
     <TextView
-        android:id="@+id/pocz"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/title"
-        android:text="Poczatek:"
-        android:textSize="18sp" />
-
-    <EditText
-        android:id="@+id/data_pocz"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/pocz"
-        android:layout_alignParentLeft="true"
-        android:ems="10"
-        android:hint="data"
-        android:inputType="date" />
-
-    <EditText
         android:id="@+id/godz_pocz"
+        android:text="Godzina:"
+        android:layout_marginTop="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/data_pocz"
-        android:ems="10"
-        android:hint="godzina"
-        android:inputType="time" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="test"
-        android:onClick="showDatePickerDialog"
-        android:layout_below="@+id/timePicker"/>
-
+        android:textSize="18sp"
+        android:layout_alignParentLeft="true" />
     <Button
         android:id="@+id/timePicker"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="testasdsad"
-        android:onClick="showTimePickerDialog" />
+        android:text="Wybierz godzinę"
+        android:onClick="showTimePickerDialog"
+        android:layout_gravity="center_horizontal"/>
 
-</RelativeLayout>
+    <TextView
+        android:id="@+id/data_wybrana"
+        android:text="Data:"
+        android:layout_marginTop="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/pocz"
+        android:textSize="18sp" />
+
+
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Wybierz dzień"
+        android:onClick="showDatePickerDialog"
+        android:layout_gravity="center_horizontal"
+       />
+
+    <EditText
+        android:id="@+id/description"
+        android:inputType="textMultiLine"
+        android:lines="5"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:hint="Opis wydarzenia:" />
+
+    <Button
+        android:id="@+id/save_recipe_button"
+        android:text="Zapisz wydarzenie"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="24dp"
+        android:layout_gravity="right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+</LinearLayout>
+
+</ScrollView>
