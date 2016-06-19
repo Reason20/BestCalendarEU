@@ -4,9 +4,9 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
-    <color name="primary_text">#212121</color>
-    <color name="secondary_text">#727272</color>
-    <color name="colorTitle">#122134</color>
+    <color name="primary_text">#0e0e0e</color>
+    <color name="secondary_text">#3e3e3e</color>
+    <color name="colorTitle">#0c1623</color>
     <!--
 
     <color name="colorPrimary">#0e1640</color>
