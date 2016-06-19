@@ -36,7 +36,8 @@ public class BestCalendarEU extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_best_calendar_eu);
         handler = new Handler();
-
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        setSupportActionBar(myToolbar);
         //Date date = Calendar.getInstance().getTime();
         //SelectedDate.setDat(date.toString());
 
