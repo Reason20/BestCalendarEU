@@ -42,72 +42,13 @@ public class BestCalendarEU extends AppCompatActivity {
         handler = new Handler();
         //Date date = Calendar.getInstance().getTime();
         //SelectedDate.setDat(date.toString());
-        Button dodaj = (Button) findViewById(R.id.newevent);
 
-        dodaj.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                handler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        Intent intent = new Intent(getApplicationContext(), AddEventActivity.class);
-                        startActivity(intent);
-                    }
-                }, 250);
-            }
-        });
-
-        Button lista = (Button) findViewById(R.id.list);
-        
-        lista.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                handler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        Intent intent = new Intent(getApplicationContext(), CalendarTaskList.class);
-                        intent.putExtra(CalendarTaskList.SELECTED_DATE, SelectedDate);
-                        startActivity(intent);
-                    }
-                }, 250);
-            }
-        });
-
-        Button about = (Button) findViewById(R.id.about);
-
-        assert about != null;
-        about.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                handler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        Intent intent = new Intent(getApplicationContext(), AboutAuthors.class);
-                        startActivity(intent);
-                    }
-                }, 250);
-            }
-        });
-
-        Button calendar = (Button) findViewById(R.id.calendar);
-
-        assert calendar != null;
-        calendar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                handler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        Intent intent = new Intent(getApplicationContext(), DisplayCalendar.class);
-                        startActivity(intent);
-                    }
-                }, 250);
-            }
-        });
 
 
 
         CalendarView cv= (CalendarView) findViewById(R.id.calendarView);
+        cv.setShowWeekNumber(false);
+        cv.setFirstDayOfWeek(2);
         if (cv != null) {
             cv.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
                 @Override
@@ -120,7 +61,6 @@ public class BestCalendarEU extends AppCompatActivity {
 
 
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -143,6 +83,7 @@ public class BestCalendarEU extends AppCompatActivity {
 
     private void startCalendarTaskList() {
         Intent i = new Intent(this, CalendarTaskList.class);
+        i.putExtra(CalendarTaskList.SELECTED_DATE, SelectedDate);
         startActivity(i);
     }
 
@@ -168,5 +109,7 @@ public class BestCalendarEU extends AppCompatActivity {
         }
 
     }
+
+
 
 }

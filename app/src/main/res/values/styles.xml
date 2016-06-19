@@ -33,4 +33,13 @@
         <item name="android:textColor">@color/clear_blue</item>
     </style>
 
+
+
+    <style name="Widget.CalendarView.Custom" parent="android:Widget.DeviceDefault.CalendarView">
+        <item name="android:focusedMonthDateColor">@color/bright_green</item>
+        <item name="android:weekNumberColor">@color/deep_blue</item>
+        <item name="android:weekDayTextAppearance">@style/TextAppearance.AppCompat.Medium</item>
+        <item name="android:dateTextAppearance">@style/TextAppearance.AppCompat.Medium</item>
+    </style>
+
 </resources>

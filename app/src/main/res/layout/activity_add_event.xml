@@ -39,5 +39,18 @@
         android:hint="godzina"
         android:inputType="time" />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="test"
+        android:onClick="showDatePickerDialog"
+        android:layout_below="@+id/timePicker"/>
+
+    <Button
+        android:id="@+id/timePicker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="testasdsad"
+        android:onClick="showTimePickerDialog" />
 
 </RelativeLayout>

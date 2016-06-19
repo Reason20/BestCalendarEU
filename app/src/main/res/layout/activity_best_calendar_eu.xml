@@ -21,43 +21,15 @@
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Dodaj Wydarzenie"
-        android:id="@+id/newevent"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Lista Wydarzeń"
-        android:id="@+id/list"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="O autorach:"
-        android:id="@+id/about"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"/>
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="test"
-        android:id="@+id/calendar"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"/>
 
     <CalendarView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:id="@+id/calendarView"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_below="@+id/newevent" />
+        android:layout_below="@+id/my_toolbar"
+        android:layout_margin="5dp"
+        android:theme="@style/Widget.CalendarView.Custom"
+        />
 </RelativeLayout>
