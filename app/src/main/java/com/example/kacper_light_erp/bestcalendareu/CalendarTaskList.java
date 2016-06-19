@@ -37,7 +37,7 @@ public class CalendarTaskList extends ActionBarActivity {
         Intent i = getIntent();
         SelectedDate = new String();
         SelectedDate = i.getExtras().getString(SELECTED_DATE);
-        //Toast.makeText(CalendarTaskList.this, SelectedDate, Toast.LENGTH_LONG).show();
+        Toast.makeText(CalendarTaskList.this, SelectedDate, Toast.LENGTH_LONG).show();
 
         initializeList();
 

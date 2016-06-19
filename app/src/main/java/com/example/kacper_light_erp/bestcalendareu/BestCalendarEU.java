@@ -79,7 +79,7 @@ public class BestCalendarEU extends AppCompatActivity {
 
     private void startCalendarTaskList() {
         Intent i = new Intent(this, CalendarTaskList.class);
-        i.putExtra(CalendarTaskList.SELECTED_DATE, SelectedDate);
+        i.putExtra(CalendarTaskList.SELECTED_DATE, SelectedDate.getDat());
         startActivity(i);
     }
 
