@@ -31,19 +31,14 @@ public class BestCalendarEU extends AppCompatActivity {
     Data SelectedDate = new Data();
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_best_calendar_eu);
-        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
-        setSupportActionBar(myToolbar);
-
         handler = new Handler();
+
         //Date date = Calendar.getInstance().getTime();
         //SelectedDate.setDat(date.toString());
-
-
 
 
         CalendarView cv= (CalendarView) findViewById(R.id.calendarView);
@@ -53,7 +48,7 @@ public class BestCalendarEU extends AppCompatActivity {
             cv.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
                 @Override
                 public void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth) {
-                    SelectedDate.setDat(Integer.toString(year) + "-" + Integer.toString(month) + "-" + Integer.toString(dayOfMonth));
+                    SelectedDate.setDat(Integer.toString(year)+"-"+Integer.toString(month+1)+"-"+Integer.toString(dayOfMonth));
 
                 }
             });
@@ -107,7 +102,6 @@ public class BestCalendarEU extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
             }
         }
-
     }
 
 
