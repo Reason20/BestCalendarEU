@@ -1,9 +1,11 @@
 package com.example.kacper_light_erp.bestcalendareu;
 
+import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
@@ -35,12 +37,15 @@ public class NetworkRequest {
             conn.setConnectTimeout(15000 /* milliseconds */);
             conn.setRequestMethod(method.getMethod());
             conn.setDoInput(true);
-
+            //OutputStream outputPost = new BufferedOutputStream(conn.getOutputStream());
             if (body != null) {
                 conn.getOutputStream().write(body.getBytes());
             }
 
             conn.connect();
+            //outputPost.write(body.getBytes());
+            //outputPost.flush();
+            //outputPost.close();
             is = conn.getInputStream();
 
             return readStream(is);

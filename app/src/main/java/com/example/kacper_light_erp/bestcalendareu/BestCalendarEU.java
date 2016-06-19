@@ -8,7 +8,6 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.MenuInflater;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -31,17 +30,14 @@ public class BestCalendarEU extends AppCompatActivity {
     Data SelectedDate = new Data();
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_best_calendar_eu);
-        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
-        setSupportActionBar(myToolbar);
-
         handler = new Handler();
-        //Date date = Calendar.getInstance().getTime();
-        //SelectedDate.setDat(date.toString());
+        Date date = Calendar.getInstance().getTime();
+        SelectedDate.setDat(date.toString());
+        Log.d("",SelectedDate.getDat());
         Button dodaj = (Button) findViewById(R.id.newevent);
 
         dodaj.setOnClickListener(new View.OnClickListener() {
@@ -56,9 +52,7 @@ public class BestCalendarEU extends AppCompatActivity {
                 }, 250);
             }
         });
-
         Button lista = (Button) findViewById(R.id.list);
-        
         lista.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -66,107 +60,22 @@ public class BestCalendarEU extends AppCompatActivity {
                     @Override
                     public void run() {
                         Intent intent = new Intent(getApplicationContext(), CalendarTaskList.class);
-                        intent.putExtra(CalendarTaskList.SELECTED_DATE, SelectedDate);
+                        intent.putExtra(CalendarTaskList.SELECTED_DATE, SelectedDate.getDat());
                         startActivity(intent);
                     }
                 }, 250);
             }
         });
-
-        Button about = (Button) findViewById(R.id.about);
-
-        assert about != null;
-        about.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                handler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        Intent intent = new Intent(getApplicationContext(), AboutAuthors.class);
-                        startActivity(intent);
-                    }
-                }, 250);
-            }
-        });
-
-        Button calendar = (Button) findViewById(R.id.calendar);
-
-        assert calendar != null;
-        calendar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                handler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        Intent intent = new Intent(getApplicationContext(), DisplayCalendar.class);
-                        startActivity(intent);
-                    }
-                }, 250);
-            }
-        });
-
-
-
         CalendarView cv= (CalendarView) findViewById(R.id.calendarView);
         if (cv != null) {
             cv.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
                 @Override
                 public void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth) {
-                    SelectedDate.setDat(Integer.toString(year) + "-" + Integer.toString(month) + "-" + Integer.toString(dayOfMonth));
+                    SelectedDate.setDat(Integer.toString(year)+"-"+Integer.toString(month+1)+"-"+Integer.toString(dayOfMonth));
 
                 }
             });
         }
-
-
-    }
-
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.test, menu);
-
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    private void startAddEventActivity() {
-        Intent i = new Intent(this, AddEventActivity.class);
-        startActivity(i);
-    }
-
-    private void startAboutAuthorsActivity() {
-        Intent i = new Intent(this, AboutAuthors.class);
-        startActivity(i);
-    }
-
-    private void startCalendarTaskList() {
-        Intent i = new Intent(this, CalendarTaskList.class);
-        startActivity(i);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-        switch (item.getItemId()) {
-            case R.id.add_event: {
-                startAddEventActivity();
-                return true;
-            }
-            case R.id.about:{
-                startAboutAuthorsActivity();
-                return true;
-            }
-            case R.id.calendar_list_view:{
-                startCalendarTaskList();
-                return true;
-            }
-            default: {
-                return super.onOptionsItemSelected(item);
-            }
-        }
-
     }
 
 }
