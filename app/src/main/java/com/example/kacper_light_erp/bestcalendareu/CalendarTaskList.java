@@ -18,7 +18,7 @@ import java.io.IOException;
 public class CalendarTaskList extends ActionBarActivity {
 
     public static final String SELECTED_DATE = "date";
-
+    public String SelectedDate;
     private static final String TAG = CalendarTaskList.class.getSimpleName();
 
 
@@ -33,6 +33,11 @@ public class CalendarTaskList extends ActionBarActivity {
         setContentView(R.layout.activity_calendar_task_list);
 
         handler = new Handler();
+
+        Intent i = getIntent();
+        SelectedDate = new String();
+        SelectedDate = i.getExtras().getString(SELECTED_DATE);
+        //Toast.makeText(CalendarTaskList.this, SelectedDate, Toast.LENGTH_LONG).show();
 
         initializeList();
 
@@ -58,9 +63,8 @@ public class CalendarTaskList extends ActionBarActivity {
     }
 
     private void fetchEvents() throws IOException, JSONException {
-        final NetworkEventsProvider networkRecipesProvider = new NetworkEventsProvider(this);
-
-        networkRecipesProvider.getEvents(new NetworkEventsProvider.OnEventsDownloadedListener() {
+        final NetworkEventsProvider networkEventsProvider = new NetworkEventsProvider(this);
+        networkEventsProvider.getEvents(new NetworkEventsProvider.OnEventsDownloadedListener() {
 
             @Override
             public void onEventsDownloaded() {
@@ -68,14 +72,13 @@ public class CalendarTaskList extends ActionBarActivity {
 
                     @Override
                     public void run() {
-                        Log.d(TAG, SELECTED_DATE);
-                        Log.d(TAG, "Fetched " + networkRecipesProvider.getEventsNumber() + " events");
-                        adapter.setEvents(networkRecipesProvider.getAllEvents());
+                        Log.d(TAG, "Fetched " + networkEventsProvider.getEventsNumber() + " events");
+                        adapter.setEvents(networkEventsProvider.getAllEvents());
                         adapter.notifyDataSetChanged();
                     }
                 });
             }
-        }, SELECTED_DATE);
+        }, SelectedDate);
     }
 
     private void showToast(final String tost) {

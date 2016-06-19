@@ -3,6 +3,7 @@ package com.example.kacper_light_erp.bestcalendareu;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.util.Log;
 import android.widget.Toast;
 
 import org.json.JSONArray;
@@ -17,7 +18,7 @@ import java.util.List;
  * Created by Kacper-Light-ERP on 2016-06-18.
  */
 public class NetworkEventsProvider {
-    private static final String EVENTS_URL = "http://androidProject2.azurewebsites.net/Ev/List";
+    private static final String EVENTS_URL = "http://androidProject2.azurewebsites.net/Ev/List?date=";
 
     private final Context context;
 
@@ -33,8 +34,8 @@ public class NetworkEventsProvider {
 
     public void getEvents(OnEventsDownloadedListener listener, String SELECTED_DATE) throws IOException, JSONException {
         if (isOnline()) {
-            SELECTED_DATE="{ \"Data\" : \""+SELECTED_DATE+"\" }";
             String s = downloadEvents(SELECTED_DATE);
+            //Toast.makeText (context, s, Toast.LENGTH_LONG).show();
             JSONObject eventObject = new JSONObject(s);
             JSONArray eventArray = eventObject.getJSONArray("returnedList");
 
@@ -43,7 +44,6 @@ public class NetworkEventsProvider {
                 JSONObject eventsObject = eventArray.getJSONObject(i);
 
                 Event event = new Event();
-                        event.setId(eventsObject.getInt("Id"));
                         event.setTytul(eventsObject.getString("Tytul"));
                         event.setData(eventsObject.getString("Data"));
                         event.setGodzina(eventsObject.getString("Godzina"));
@@ -67,7 +67,7 @@ public class NetworkEventsProvider {
     }
 
     private String downloadEvents(String dataJSON) throws IOException {
-        return new NetworkRequest(EVENTS_URL, HttpMethod.POST, dataJSON).execute();
+        return new NetworkRequest(EVENTS_URL+dataJSON, HttpMethod.GET).execute();
     }
 
     public boolean isOnline() {
