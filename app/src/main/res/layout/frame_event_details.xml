@@ -1,6 +1,7 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/deep_blue">
 
     <ScrollView
         android:id="@+id/scroll"
@@ -21,6 +22,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="25dp"
+                android:layout_margin="10dp"
+                android:padding="10dp"
+                android:background="@color/dark_blue"
+                android:textColor="@color/clear_blue"
                 />
 
 
@@ -31,8 +36,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
                 android:textSize="50sp"
                 android:layout_gravity="center_horizontal"
+                android:textColor="@android:color/white"
                 />
 
 
@@ -42,8 +49,10 @@
                 android:id="@+id/Opis"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="60dp"
+                android:layout_margin="10dp"
+                android:padding="10dp"
+                android:background="@color/dark_blue"
+                android:textColor="@color/clear_blue"
                 android:textSize="17sp"/>
 
         </LinearLayout>
@@ -53,7 +62,7 @@
     <Button android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal|bottom"
-        android:text="scroll to top"
+        android:text="Przewiń do góry"
         android:id="@+id/button"/>
 
 </FrameLayout>
