@@ -1,5 +1,8 @@
 package com.example.kacper_light_erp.bestcalendareu;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.Serializable;
 /**
  * Created by Kacper-Light-ERP on 2016-06-10.
@@ -16,6 +19,25 @@ public class Event implements Serializable{
         setData(b);
         setGodzina(c);
         setOpis(d);
+    }
+    public String toJSON(){
+
+        JSONObject jsonObject= new JSONObject();
+        try {
+            jsonObject.put("Tytul", getTytul());
+            jsonObject.put("Godzina", getGodzina());
+            jsonObject.put("Data", getData());
+            jsonObject.put("Opis", getOpis());
+
+
+
+            return jsonObject.toString();
+        } catch (JSONException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+            return "";
+        }
+
     }
 
     /*public Event(String a, String b, String c, String d, int w){

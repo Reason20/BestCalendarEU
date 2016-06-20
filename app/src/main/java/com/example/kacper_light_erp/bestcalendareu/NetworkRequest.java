@@ -36,18 +36,30 @@ public class NetworkRequest {
             conn.setReadTimeout(10000 /* milliseconds */);
             conn.setConnectTimeout(15000 /* milliseconds */);
             conn.setRequestMethod(method.getMethod());
+            conn.setRequestProperty("Content-Type", "application/json");
             conn.setDoInput(true);
+            //if(method==HttpMethod.POST)
+            //    conn.setDoInput(true);
             //OutputStream outputPost = new BufferedOutputStream(conn.getOutputStream());
             if (body != null) {
+                //conn.setDoOutput(true);
                 conn.getOutputStream().write(body.getBytes());
             }
 
             conn.connect();
+            //conn.getOutputStream().flush();
             //outputPost.write(body.getBytes());
             //outputPost.flush();
             //outputPost.close();
-            is = conn.getInputStream();
+            if(method==HttpMethod.GET) {
+                is = conn.getInputStream();
+            }
+            else{
+                int status = conn.getResponseCode();
+                if (status!=200)
+                    is = conn.getErrorStream();
 
+            }
             return readStream(is);
         } finally {
             if (is != null) {

@@ -46,6 +46,7 @@ android:layout_height="match_parent" >
 
 
     <Button
+        android:id="@+id/data_but"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Wybierz dzień"
@@ -65,7 +66,7 @@ android:layout_height="match_parent" >
         android:hint="Opis wydarzenia:" />
 
     <Button
-        android:id="@+id/save_recipe_button"
+        android:id="@+id/save_button"
         android:text="Zapisz wydarzenie"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="24dp"
