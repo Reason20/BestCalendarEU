@@ -100,7 +100,7 @@ public class AddEventActivity extends AppCompatActivity {
                 event.setOpis(opis.toString());
                 event.setTytul(tytul.toString());
                 yolo = event.toJSON();
-                System.out.println(yolo);
+                Log.d("",yolo);
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
@@ -114,21 +114,20 @@ public class AddEventActivity extends AppCompatActivity {
 
     public void AddEventToDB(String a) {
         try {
-            String request = new NetworkRequest(EVENTS_URL, HttpMethod.POST, a).execute();
-            Log.d("",request );
+            new NetworkRequest(EVENTS_URL, HttpMethod.POST, a).execute();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
 
-    public void showDatePickerDialog(View v) {
+    /*public void showDatePickerDialog(View v) {
         DialogFragment newFragment = new DatePickerFragment();
         newFragment.show(getSupportFragmentManager(), "datePicker");
     }
     public void showTimePickerDialog(View v) {
         DialogFragment newFragment = new TimePickerFragment();
         newFragment.show(getSupportFragmentManager(), "timePicker");
-    }
+    }*/
 }
 

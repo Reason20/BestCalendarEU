@@ -42,7 +42,7 @@ public class BestCalendarEU extends AppCompatActivity {
         int year = c.get(Calendar.YEAR);
         int month = c.get(Calendar.MONTH);
         int day = c.get(Calendar.DAY_OF_MONTH);
-        SelectedDate.setDat(Integer.toString(year)+"-"+Integer.toString(month)+"-"+Integer.toString(day));
+        SelectedDate.setDat(Integer.toString(year)+"-"+Integer.toString(month+1)+"-"+Integer.toString(day));
 
         CalendarView cv= (CalendarView) findViewById(R.id.calendarView);
         cv.setShowWeekNumber(false);
